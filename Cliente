@@ -4,7 +4,7 @@ public class Cliente {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bienvenido al Hotel");
+        System.out.println("Bienvenido al Hotel San Luis");
         System.out.println("-------------------");
 
         System.out.print("Ingrese el nombre del cliente: ");
