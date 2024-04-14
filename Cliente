@@ -51,18 +51,7 @@ double costoHabitacion = 0.0;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+// Implentar el si desea servicios adicionales
 
 
 
@@ -83,12 +72,21 @@ double costoHabitacion = 0.0;
             costoTotal -= descuento;
             System.out.println("Se aplicó un descuento del 5% para estadías de más de 7 días.");
         }
-
-
-
-
-
-
+scanner.close();
+        System.out.println("-------------------");
+        System.out.println("Resumen de la reserva");
+        System.out.println("-------------------");
+        System.out.println("Cliente: " + nombreCliente);
+        System.out.println("RUT del cliente: " + rutCliente);
+        System.out.println("Duración de la estadía: " + duracionEstadia + " días");
+  // Se muestra los descuentos aplicados
+        if (edadCliente >= 65) {
+            System.out.println("Descuento aplicado: 10% por ser mayor de 65 años");
+        }
+        if (duracionEstadia > 7) {
+            System.out.println("Descuento aplicado: 5% por estadía de más de 7 días");
+        }
+        
 public static boolean validaRut(String rut) {
         Pattern pattern = Pattern.compile("^[0-9]+-[0-9kK]{1}$");
         Matcher matcher = pattern.matcher(rut);
