@@ -1,21 +1,110 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class Cliente {
+public class Clientes {
+
     public static void main(String[] args) {
+        // Scanner para leer la entrada del usuario
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Bienvenido al Hotel San Luis");
+        // Saludo al cliente
+        System.out.println("Bienvenido al Hotel");
         System.out.println("-------------------");
 
+        // Solicitud de datos al cliente (Nombre y RUT)
         System.out.print("Ingrese el nombre del cliente: ");
         String nombreCliente = scanner.nextLine();
+        String rutCliente = "";
+        boolean rutValido = false;
 
+        // Bucle para solicitar el RUT hasta que sea válido
+        while (!rutValido) {
+            System.out.print("Ingrese el RUT del cliente (Formato XXXXXXX-X): ");
+            rutCliente = scanner.nextLine();
+
+            // Validación del RUT
+            if (validaRut(rutCliente)) {
+                rutValido = true;
+                System.out.println("RUT válido");
+            } else {
+                System.out.println("RUT inválido. Por favor, ingrese un RUT válido.");
+            }
+        }
+        
+        // Solicitud del día de llegada al hotel y duración de la estadía
+        System.out.print("Ingrese el día de llegada al hotel: ");
+        String diaLlegada = scanner.nextLine();
         System.out.print("Ingrese la duración de la estadía (en días): ");
         int duracionEstadia = scanner.nextInt();
 
+        // Se muestran las 3 opciones de habitacion, en caso de colocar un numero distinto se asigna la habitacion doble
         System.out.println("Opciones de habitaciones:");
         System.out.println("1. Habitación individual - $100");
         System.out.println("2. Habitación doble - $150");
-        System.out.println("3. Habitación suite - $200");
+        System.out.println("3. Habitación suite - $300");
         System.out.print("Ingrese el número de la habitación elegida: ");
         int opcionHabitacion = scanner.nextInt();
+// Implementar sistema de calculo costo habitacion(switch???)
+double costoHabitacion = 0.0;
+???????
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Se le solicita la edad para aplicar el descuento correspondiente
+        System.out.print("Ingrese la edad del cliente: ");
+        int edadCliente = scanner.nextInt();
+
+        // Se aplican los descuentos correspondientes por si es mayor o igual a 65 años que es un 10%
+        if (edadCliente >= 65) {
+            double descuento = costoTotal * 0.1;
+            costoTotal -= descuento;
+            System.out.println("Se aplicó un descuento del 10% para personas mayores de 65 años.");
+        }
+
+        // Se le aplica un descuento del 5% si la estadia es mayor a 7 dias
+        if (duracionEstadia > 7) {
+            double descuento = costoTotal * 0.05;
+            costoTotal -= descuento;
+            System.out.println("Se aplicó un descuento del 5% para estadías de más de 7 días.");
+        }
+
+
+
+
+
+
+public static boolean validaRut(String rut) {
+        Pattern pattern = Pattern.compile("^[0-9]+-[0-9kK]{1}$");
+        Matcher matcher = pattern.matcher(rut);
+        if (!matcher.matches())
+            return false;
+        String[] stringRut = rut.split("-");
+        return stringRut[1].equalsIgnoreCase(dv(stringRut[0]));
+    }
+
+    /**
+     * Valida el dígito verificador
+     */
+    public static String dv(String rut) {
+        int M = 0, S = 1, T = Integer.parseInt(rut);
+        for (; T != 0; T = (int) Math.floor(T /= 10))
+            S = (S + T % 10 * (9 - M++ % 6)) % 11;
+        return (S > 0) ? String.valueOf(S - 1) : "k";
+    }
+}
